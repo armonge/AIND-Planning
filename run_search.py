@@ -50,6 +50,7 @@ class PrintableProblem(InstrumentedProblem):
 
 
 def run_search(problem, search_function, parameter=None):
+    print(problem, search_function)
 
     start = timer()
     ip = PrintableProblem(problem)
@@ -62,6 +63,17 @@ def run_search(problem, search_function, parameter=None):
     print("{}\n".format(ip))
     show_solution(node, end - start)
     print()
+
+    return {
+        'time': end - start,
+        'length': len(node.solution()),
+        'actions': ["{}{}".format(action.name, action.args) for action in node.solution()],
+        'problem': {
+            'succ': ip.succs,
+            'goal_tests': ip.goal_tests,
+            'states': ip.states
+        }
+    }
 
 
 def manual():
@@ -110,6 +122,21 @@ def show_solution(node, elapsed_time):
         print("Plan length: {}  Time elapsed in seconds: {}".format(len(node.solution()), elapsed_time))
         for action in node.solution():
             print("{}{}".format(action.name, action.args))
+
+
+def handler(event, context):
+    problem = PROBLEMS[event['problem'] - 1]
+    search_function = SEARCHES[event['search_function'] - 1]
+
+    pname, p = problem
+
+    sname, s, h = search_function
+    hstring = h if not h else " with {}".format(h)
+
+    _p = p()
+    _h = None if not h else getattr(_p, h)
+
+    return { 'problem': pname, 'function': sname, 'h': _h, 'data': run_search(_p, s, _h) }
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser(description="Solve air cargo planning problems " + 

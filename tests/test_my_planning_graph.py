@@ -73,6 +73,7 @@ class TestPlanningGraphMutex(unittest.TestCase):
                          "Non-Canceling effects incorrectly marked as mutex")
 
     def test_interference_mutex(self):
+        print('**********************************')
         self.assertTrue(PlanningGraph.interference_mutex(self.pg, self.na4, self.na5),
                         "Precondition from one node opposite of effect of other node should be mutex")
         self.assertTrue(PlanningGraph.interference_mutex(self.pg, self.na5, self.na4),

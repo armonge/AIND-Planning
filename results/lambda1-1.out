@@ -1,0 +1,1 @@
+{"problem": "Air Cargo Problem 1", "function": "breadth_first_search", "h": "", "data": {"time": 0.06755535299998883, "length": 6, "actions": ["Load(C1, P1, SFO)", "Load(C2, P2, JFK)", "Fly(P2, JFK, SFO)", "Unload(C2, P2, SFO)", "Fly(P1, SFO, JFK)", "Unload(C1, P1, JFK)"], "problem": {"succ": 43, "goal_tests": 56, "states": 180}}}

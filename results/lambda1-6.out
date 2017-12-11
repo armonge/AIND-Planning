@@ -1,0 +1,1 @@
+{"problem": "Air Cargo Problem 1", "function": "recursive_best_first_search", "h": " with h_1", "data": {"time": 5.122163854000064, "length": 6, "actions": ["Load(C2, P2, JFK)", "Load(C1, P1, SFO)", "Fly(P2, JFK, SFO)", "Unload(C2, P2, SFO)", "Fly(P1, SFO, JFK)", "Unload(C1, P1, JFK)"], "problem": {"succ": 4229, "goal_tests": 4230, "states": 17023}}}
